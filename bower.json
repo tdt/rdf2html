@@ -1,0 +1,26 @@
+{
+  "name": "rdf2html",
+  "version": "0.0.0",
+  "homepage": "https://github.com/tdt/rdf2html",
+  "authors": [
+    "Pieter Colpaert <pieter.colpaert@ugent.be>"
+  ],
+  "description": "a javascript library to visualize an array of RDF triples into an HTML page",
+  "main": "rdf2html.js",
+  "keywords": [
+    "rdf",
+    "html",
+    "visualizer"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "levelgraph-n3": "~0.3.3"
+  }
+}
