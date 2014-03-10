@@ -53,7 +53,6 @@ We want you to contribute, or we are planning to contribute these in the future:
  * opening hours: http://semweb.mmlab.be/oh#
  * schema: http://schema.org/
 
-
 ## Authors ##
 
 Ghent University - MMLab - iMinds: Miel Vander Sande, Pieter Colpaert

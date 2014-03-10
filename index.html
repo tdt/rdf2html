@@ -1,0 +1,33 @@
+<html>
+<head>
+  <title>Example for RDF2HTML</title>
+
+  <link rel="stylesheet" href="example.css" type="text/css" media="screen" />
+  <script data-main="rdf2html" src="bower_components/requirejs/require.js"></script>
+</head>
+<body>
+  <div id="rdf2html">
+    <div id="map">
+      <!--TODO-->
+    </div>
+    <div id="ontology">
+      <div id="maintainers"></div>
+      <div id="classes"></div>
+    </div>
+    <div id="metadata"></div>
+    <div id="triples">  
+    </div>
+  </div>
+  <!-- You can now set the turtle over here: -->
+  <script type="text/javascript">
+      var turtle = "@prefix c: <http://example.org/cartoons#>.\n" +
+    "c:Tom a c:Cat.\n" +
+    "c:Jerry a c:Mouse;\n" +
+    "        c:smarterThan c:Tom;\n" +
+    "        c:place \"fantasy\".";
+      require(["rdf2html"], function (rdf2html) {
+        rdf2html(turtle);
+      });
+  </script>
+</body>
+</html>

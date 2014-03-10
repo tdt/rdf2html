@@ -1,0 +1,14 @@
+#triples .subject {
+    width : 33% ;
+    float : left;
+}
+
+#triples .predicate {
+    width : 33% ;
+    float : left;
+}
+
+#triples .object {
+    width : 33% ;
+    float : right;
+}

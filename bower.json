@@ -21,6 +21,8 @@
     "tests"
   ],
   "dependencies": {
-    "levelgraph-n3": "~0.3.3"
+    "levelgraph-n3": "~0.3.3",
+    "requirejs": "~2.1.11",
+    "jquery": "~2.1.0"
   }
 }
