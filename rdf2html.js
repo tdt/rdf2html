@@ -1,5 +1,5 @@
 // plugins should be put in the plugins directory under: "plugins/{name}/{name}.js"
-var plugins = [ "triples" ];
+var plugins = [ "triples", "map" ];
 
 require.config({
   paths: {

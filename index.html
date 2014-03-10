@@ -1,8 +1,9 @@
 <html>
 <head>
   <title>Example for RDF2HTML</title>
-
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
   <link rel="stylesheet" href="example.css" type="text/css" media="screen" />
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
   <script data-main="rdf2html" src="bower_components/requirejs/require.js"></script>
 </head>
 <body>
@@ -20,11 +21,12 @@
   </div>
   <!-- You can now set the turtle over here: -->
   <script type="text/javascript">
-      var turtle = "@prefix c: <http://example.org/cartoons#>.\n" +
+      var turtle = "@prefix c: <http://example.org/cartoons#>. \n @prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> . \n" +
     "c:Tom a c:Cat.\n" +
     "c:Jerry a c:Mouse;\n" +
     "        c:smarterThan c:Tom;\n" +
-    "        c:place \"fantasy\".";
+    "        c:place \"fantasy\";" + 
+    " a geo:Point ; geo:long -0.09 ; geo:lat 51.5 .";
       require(["rdf2html"], function (rdf2html) {
         rdf2html(turtle);
       });

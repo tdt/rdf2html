@@ -23,6 +23,7 @@
   "dependencies": {
     "levelgraph-n3": "~0.3.3",
     "requirejs": "~2.1.11",
-    "jquery": "~2.1.0"
+    "jquery": "~2.1.0",
+    "leaflet": "~0.7.2"
   }
 }
