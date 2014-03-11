@@ -17,73 +17,78 @@
     <div id="triples">  
     </div>
   </div>
+
   <!-- You can now set the turtle over here: -->
+  <script id="turtle" type="text/rdf+turtle">
+@base <http://semweb.mmlab.be/ns/oh#> .
+
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix oh: <http://semweb.mmlab.be/ns/oh#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+# ---------------------------------------- Metadata----------------------------------------------
+
+<http://semweb.mmlab.be/ns/oh> a owl:Ontology;
+	rdfs:comment "A vocabulary to describe opening hours using ICal/RDFCal calendars";
+	dct:title "The Opening Hours vocabulary"@en;
+	dct:issued "2013-12-05"^^xsd:date;
+        dct:modified "2013-12-26"^^xsd:date;
+	dct:creator [foaf:mbox "Pieter.Colpaert@UGent.be"; foaf:name "Pieter Colpaert"];
+	dct:creator [foaf:mbox "Laurens.DeVocht@UGent.be"; foaf:name "Laurens De Vocht"];
+	dct:creator [foaf:mbox "Steven.Verstockt@UGent.be"; foaf:name "Steven Verstockt"].
+
+oh:OpeningHours rdf:type owl:Class ;
+	rdfs:subClassOf owl:Thing ;
+	rdfs:label "Opening Hours" ;
+	rdfs:comment "A class to identify opening hours" ;
+	rdfs:isDefinedBy <http://semweb.mmlab.be/ns/oh> .
+
+oh:OpeningHoursType rdf:type owl:Class ;
+	rdfs:subClassOf owl:Thing ;
+	rdfs:label "Opening Hours Type" ;
+	rdfs:comment "A class to identify the type of opening hours" ;
+	rdfs:isDefinedBy <http://semweb.mmlab.be/ns/oh> .
+oh:Calendar rdf:type owl:Class ;
+	rdfs:subClassOf owl:Thing ;
+	rdfs:label "A calendar" ;
+	rdfs:comment "A calendar which can be used for opening hours" ;
+	rdfs:isDefinedBy <http://semweb.mmlab.be/ns/oh> .
+oh:calendar rdf:type owl:ObjectProperty ;
+    rdfs:comment "A property to tell oh:OpeningHours to keep this calendar into account"@en ;
+    rdfs:range oh:Calendar ;
+    rdfs:domain rdf:List .
+
+oh:type rdf:type owl:ObjectProperty ;
+    rdfs:comment "Give a type to an oh:OpeningHours instance"@en ;
+    rdfs:range oh:Calendar ;
+    rdfs:domain oh:OpeningHoursType .
+oh:rdfcal rdf:type owl:ObjectProperty ;
+          rdfs:comment "A url towards a RDF calendar. The url gets an RDF Calendar component. It is advised to use the same URI as the instance of oh:Calendar, but this is not implied." ;
+          rdfs:range rdfs:Resource ;
+          rdfs:domain oh:Calendar .
+
+oh:closinghours rdf:type owl:DatatypeProperty ;
+                rdfs:comment "Tell whether or not this oh:Calendar specifies closing hours." ;
+                rdfs:range xsd:boolean ;
+                rdfs:domain oh:Calendar .
+
+oh:icalurl rdf:type owl:ObjectProperty ;
+           rdfs:comment "An url towards an ICal calendar in the ICal serialization." ;
+           rdfs:range rdfs:Resource ;
+           rdfs:domain oh:Calendar .
+  </script>
+
   <script type="text/javascript">
-      var turtle = '@base <http://semweb.mmlab.be/ns/oh#> .\n \
-\n \
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n \
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n \
-@prefix owl: <http://www.w3.org/2002/07/owl#> .\n \
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .\n \
-@prefix oh: <http://semweb.mmlab.be/ns/oh#> .\n \
-@prefix dct: <http://purl.org/dc/terms/> .\n \
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n \
-\n \
-\n \
-# ---------------------------------------- Metadata----------------------------------------------\n \
-\n \
-<http://semweb.mmlab.be/ns/oh> a owl:Ontology;\n \
-	rdfs:comment "A vocabulary to describe opening hours using ICal/RDFCal calendars";\n \
-	dct:title "The Opening Hours vocabulary"@en;\n \
-	dct:issued "2013-12-05"^^xsd:date;\n \
-        dct:modified "2013-12-26"^^xsd:date;\n \
-	dct:creator [foaf:mbox "Pieter.Colpaert@UGent.be"; foaf:name "Pieter Colpaert"];\n \
-	dct:creator [foaf:mbox "Laurens.DeVocht@UGent.be"; foaf:name "Laurens De Vocht"];\n \
-	dct:creator [foaf:mbox "Steven.Verstockt@UGent.be"; foaf:name "Steven Verstockt"].\n \
-\n \
-oh:OpeningHours rdf:type owl:Class ;\n \
-	rdfs:subClassOf owl:Thing ;\n \
-	rdfs:label "Opening Hours" ;\n \
-	rdfs:comment "A class to identify opening hours" ;\n \
-	rdfs:isDefinedBy <http://semweb.mmlab.be/ns/oh> .\n \
-\n \
-oh:OpeningHoursType rdf:type owl:Class ;\n \
-	rdfs:subClassOf owl:Thing ;\n \
-	rdfs:label "Opening Hours Type" ;\n \
-	rdfs:comment "A class to identify the type of opening hours" ;\n \
-	rdfs:isDefinedBy <http://semweb.mmlab.be/ns/oh> .\n \
-oh:Calendar rdf:type owl:Class ;\n \
-	rdfs:subClassOf owl:Thing ;\n \
-	rdfs:label "A calendar" ;\n \
-	rdfs:comment "A calendar which can be used for opening hours" ;\n \
-	rdfs:isDefinedBy <http://semweb.mmlab.be/ns/oh> .\n \
-oh:calendar rdf:type owl:ObjectProperty ;\n \
-    rdfs:comment "A property to tell oh:OpeningHours to keep this calendar into account"@en ;\n \
-    rdfs:range oh:Calendar ;\n \
-    rdfs:domain rdf:List .\n \
-\n \
-oh:type rdf:type owl:ObjectProperty ;\n \
-    rdfs:comment "Give a type to an oh:OpeningHours instance"@en ;\n \
-    rdfs:range oh:Calendar ;\n \
-    rdfs:domain oh:OpeningHoursType .\n \
-oh:rdfcal rdf:type owl:ObjectProperty ;\n \
-          rdfs:comment "A url towards a RDF calendar. The url gets an RDF Calendar component. It is advised to use the same URI as the instance of oh:Calendar, but this is not implied." ;\n \
-          rdfs:range rdfs:Resource ;\n \
-          rdfs:domain oh:Calendar .\n \
-\n \
-oh:closinghours rdf:type owl:DatatypeProperty ;\n \
-                rdfs:comment "Tell whether or not this oh:Calendar specifies closing hours." ;\n \
-                rdfs:range xsd:boolean ;\n \
-                rdfs:domain oh:Calendar .\n \
-\n \
-oh:icalurl rdf:type owl:ObjectProperty ;\n \
-           rdfs:comment "An url towards an ICal calendar in the ICal serialization." ;\n \
-           rdfs:range rdfs:Resource ;\n \
-           rdfs:domain oh:Calendar .';
-    
-      require(["rdf2html"], function (rdf2html) {
-        rdf2html(turtle);
-      });
+    require(["rdf2html"], function (rdf2html) {
+        console.log(document.getElementById("turtle").innerHTML);
+        rdf2html(document.getElementById("turtle").innerHTML);
+    });
+
   </script>
 </body>
 </html>
