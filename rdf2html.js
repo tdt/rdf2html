@@ -1,5 +1,5 @@
 // plugins should be put in the plugins directory under: "plugins/{name}/{name}.js"
-var plugins = [ "triples", "map" ];
+var plugins = [ "triples", "map", "ontology" ];
 
 require.config({
   paths: {
@@ -15,7 +15,6 @@ define( function () {
   return function(turtle){
     require(["levelgraph","levelgraphN3","jquery"], function(levelgraph,levelgraphN3, jquery) {
       var db = levelgraphN3(levelgraph('triples'));
-      
       db.n3.put(turtle, function(err) {
         if(err){
           console.log("Uh oh - something nasty happened when adding triples: " + err);
