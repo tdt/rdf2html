@@ -1,32 +1,25 @@
 // plugins should be put in the plugins directory under: "plugins/{name}/{name}.js"
-var plugins = [ "triples", "map", "ontology" ];
+var N3 = require('n3');
+var plugins = [ 
+  require("./plugins/triples/triples.js"), 
+  require("./plugins/map/map.js"),
+  require("./plugins/ontology/ontology.js")
+];
+require('n3').Util(global);
 
-require.config({
-  paths: {
-    jquery: 'bower_components/jquery/dist/jquery.min',
-    levelgraph : 'bower_components/levelgraph/build/levelgraph.min',
-    levelgraphN3 : 'bower_components/levelgraph-n3/build/levelgraph-n3.min'
-  },
-  //For development purposes. (Quick fix)
-  urlArgs: "bust=" + (new Date()).getTime()
-});
-
-define( function () {
-  return function(turtle){
-    require(["levelgraph","levelgraphN3","jquery"], function(levelgraph,levelgraphN3, jquery) {
-      var db = levelgraphN3(levelgraph('triples'));
-      db.n3.put(turtle, function(err) {
-        if(err){
-          console.log("Uh oh - something nasty happened when adding triples: " + err);
-        }
+rdf2html = function(turtle){
+  var parser = N3.Parser();
+  var db = N3.Store();
+  var prefixes = [];
+  parser.parse(turtle, function (error, triple, prefixes ) {
+    if (triple) {
+      db.addTriple(triple.subject,triple.predicate,triple.object);
+    }
+    else {
+      console.log("Triples successfully loaded");
+      plugins.forEach(function(pl){
+        pl(db);
       });
-      
-      $.each(plugins, function (index,pl) {
-        require(["plugins/" + pl + "/" + pl], function (plugin) {
-          plugin(db);
-        });
-      });
-
-    });
-  }; 
-});
+    }
+  });
+};

@@ -3,6 +3,8 @@ rdf2html
 
 a javascript library to visualize an array of RDF triples into an HTML page
 
+Current stage: `planning - not functional`
+
 ## Usage 
 
 ### HTML skeleton ###
@@ -21,6 +23,16 @@ We use an HTML skeleton in which we inject the code:
 </div>
 ```
 
+Somewhere in the HTML code, you should include the triples in turtle format:
+
+```html
+<script id="turtle" type="text/rdf+turtle">
+@base <http://semweb.mmlab.be/ns/oh#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+<http://semweb.mmlab.be/ns/oh> a owl:Ontology;
+</script>
+```
+
 You can customize this HTML to fit your page's lay-out. Be sure to add script tags for the rdf2html and run it.
 
 ### A visualizer for your vocabulary ###
@@ -31,24 +43,24 @@ You're creating a particular visualization: e.g., you want to display an ontolog
 
 ## Contribute
 
-Clone this repository, run `bower install`, and you're all set.
+Clone this repository, run `npm install`, run `mkdir build; rdf2html.js -o build/rdf2html.js`, use the build javascript.
+
+To install browserify: `sudo npm install -g browserify`
 
 ## Support
 
 Currently, we support these ontologies:
 
- * _none_
-
-We want you to contribute, or we are planning to contribute these in the future:
-
  * geo
  * owl/rdfs
+
+We want you to contribute, or we are planning to contribute these in the future:
  * apps4eu
  * foaf
  * dcterms
  * dbpedia-owl
  * dcat
- * data cube (e.g., for graphs)
+ * data cube
  * oslo: http://purl.org/oslo#
  * opening hours: http://semweb.mmlab.be/oh#
  * schema: http://schema.org/
@@ -56,6 +68,8 @@ We want you to contribute, or we are planning to contribute these in the future:
 ## Authors ##
 
 Ghent University - MMLab - iMinds: Miel Vander Sande, Pieter Colpaert
+
 We Open Data: Michiel Vancoillie
+
 
 © 2014 - Ghent University - MIT License

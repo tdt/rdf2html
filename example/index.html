@@ -4,13 +4,21 @@
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
   <link rel="stylesheet" href="example.css" type="text/css" media="screen" />
   <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
-  <script data-main="rdf2html" src="bower_components/requirejs/require.js"></script>
+
+  <!-- Latest compiled and minified bootstrap CSS -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  
+  <!-- Optional bootstrap theme -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+
+  <!-- Latest compiled and minified bootstrap JavaScript -->
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+  <script src="../build/rdf2html.js"></script>
 </head>
 <body>
   <div id="rdf2html">
-    <div id="map">
-      <!--TODO-->
-    </div>
+    <div id="map"></div>
     <div id="ontology">
     </div>
     <div id="metadata"></div>
@@ -38,7 +46,9 @@
 	dct:title "The Opening Hours vocabulary"@en;
 	dct:issued "2013-12-05"^^xsd:date;
         dct:modified "2013-12-26"^^xsd:date;
-	dct:creator [foaf:mbox "Pieter.Colpaert@UGent.be"; foaf:name "Pieter Colpaert"];
+	dct:creator [foaf:mbox "Pieter.Colpaert@UGent.be"; foaf:name "Pieter Colpaert" ; 
+                     <http://www.w3.org/2003/01/geo/wgs84_pos#lat> "51" ; 
+                     <http://www.w3.org/2003/01/geo/wgs84_pos#long> "3.71"  ];
 	dct:creator [foaf:mbox "Laurens.DeVocht@UGent.be"; foaf:name "Laurens De Vocht"];
 	dct:creator [foaf:mbox "Steven.Verstockt@UGent.be"; foaf:name "Steven Verstockt"].
 
@@ -83,12 +93,9 @@ oh:icalurl rdf:type owl:ObjectProperty ;
            rdfs:domain oh:Calendar .
   </script>
 
+  <!--and run the rdf2html code-->
   <script type="text/javascript">
-    require(["rdf2html"], function (rdf2html) {
-        console.log(document.getElementById("turtle").innerHTML);
-        rdf2html(document.getElementById("turtle").innerHTML);
-    });
-
+    rdf2html(document.getElementById("turtle").innerHTML);
   </script>
 </body>
 </html>
