@@ -9,27 +9,19 @@ Current stage: `planning - not functional`
 
 ### HTML skeleton ###
 
-We use an HTML skeleton in which we inject the code:
+We use a HTML data attribute `data-rdftohtml-plugin` to determine where to inject HTML generated from the plugins, for example for the map plugin:
 
 ```html
-<div id="rdf2html">
-  <div id="map"></div>
-  <div id="ontology">
-    <div id="maintainers"></div>
-    <div id="classes"></div>
-  </div>
-  <div id="metadata"></div>
-  <div id="triples"></div>
-</div>
+<div data-rdftohtml-plugin='map'></div>
 ```
 
 Somewhere in the HTML code, you should include the triples in turtle format:
 
 ```html
 <script id="turtle" type="text/rdf+turtle">
-@base <http://semweb.mmlab.be/ns/oh#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-<http://semweb.mmlab.be/ns/oh> a owl:Ontology;
+    @base <http://semweb.mmlab.be/ns/oh#> .
+    @prefix owl: <http://www.w3.org/2002/07/owl#> .
+    <http://semweb.mmlab.be/ns/oh> a owl:Ontology;
 </script>
 ```
 
