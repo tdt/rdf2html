@@ -1,16 +1,22 @@
-#triples .subject {
+body {
+    padding: 20px 0px;
+}
+
+.rdf2html-triple .subject {
     width : 33% ;
     float : left;
 }
 
-#triples .predicate {
+.rdf2html-triple .predicate {
     width : 33% ;
     float : left;
 }
 
-#triples .object {
+.rdf2html-triple .object {
     width : 33% ;
     float : right;
 }
 
-#map { height: 180px; }
+.leaflet-container {
+    height: 300px;
+}

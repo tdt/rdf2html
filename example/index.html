@@ -1,101 +1,137 @@
 <html>
 <head>
-  <title>Example for RDF2HTML</title>
-  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
-  <link rel="stylesheet" href="example.css" type="text/css" media="screen" />
-  <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
+    <title>RDF2HTML example</title>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
 
-  <!-- Latest compiled and minified bootstrap CSS -->
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-  
-  <!-- Optional bootstrap theme -->
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <!-- Latest compiled and minified bootstrap CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
-  <!-- Latest compiled and minified bootstrap JavaScript -->
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <!-- Optional bootstrap theme -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/slate/bootstrap.min.css">
 
-  <script src="../build/rdf2html.js"></script>
+    <link rel="stylesheet" href="example.css" type="text/css" media="screen" />
+    <script src="../build/rdf2html.js"></script>
 </head>
 <body>
-  <div id="rdf2html">
-    <div id="map"></div>
-    <div id="ontology">
+    <div class='container'>
+        <div class='row'>
+            <div class='col-xs-12'>
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">RDF2HTML</a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-7'>
+                <h3>Ontology</h3>
+                <hr/>
+                <div data-rdftohtml-plugin='ontology'>
+                </div>
+            </div>
+            <div class='col-sm-5'>
+                <h3>Map</h3>
+                <hr/>
+                <div data-rdftohtml-plugin='map'></div>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-xs-12'>
+                <h3>Triples</h3>
+                <hr/>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <div data-rdftohtml-plugin='triples'>
+                </div>
+            </div>
+        </div>
+
     </div>
-    <div id="metadata"></div>
-    <div id="triples">  
-    </div>
-  </div>
 
-  <!-- You can now set the turtle over here: -->
-  <script id="turtle" type="text/rdf+turtle">
-@base <http://semweb.mmlab.be/ns/oh#> .
-
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix oh: <http://semweb.mmlab.be/ns/oh#> .
-@prefix dct: <http://purl.org/dc/terms/> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+    <!-- You can now set the turtle over here: -->
+    <script id="turtle" type="text/rdf+turtle">
+        @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+        @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+        @prefix owl: <http://www.w3.org/2002/07/owl#> .
+        @prefix foaf: <http://xmlns.com/foaf/0.1/> .
+        @prefix oh: <http://semweb.mmlab.be/ns/oh#> .
+        @prefix dct: <http://purl.org/dc/terms/> .
+        @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 
-# ---------------------------------------- Metadata----------------------------------------------
+        # ---------------------------------------- Metadata----------------------------------------------
 
-<http://semweb.mmlab.be/ns/oh> a owl:Ontology;
-	rdfs:comment "A vocabulary to describe opening hours using ICal/RDFCal calendars";
-	dct:title "The Opening Hours vocabulary"@en;
-	dct:issued "2013-12-05"^^xsd:date;
-        dct:modified "2013-12-26"^^xsd:date;
-	dct:creator [foaf:mbox "Pieter.Colpaert@UGent.be"; foaf:name "Pieter Colpaert" ; 
-                     <http://www.w3.org/2003/01/geo/wgs84_pos#lat> "51" ; 
-                     <http://www.w3.org/2003/01/geo/wgs84_pos#long> "3.71"  ];
-	dct:creator [foaf:mbox "Laurens.DeVocht@UGent.be"; foaf:name "Laurens De Vocht"];
-	dct:creator [foaf:mbox "Steven.Verstockt@UGent.be"; foaf:name "Steven Verstockt"].
+        <http://semweb.mmlab.be/ns/oh> a owl:Ontology;
+            rdfs:comment "A vocabulary to describe opening hours using ICal/RDFCal calendars";
+            dct:title "The Opening Hours vocabulary"@en;
+            dct:issued "2013-12-05"^^xsd:date;
+                dct:modified "2013-12-26"^^xsd:date;
+            dct:creator [foaf:mbox "Pieter.Colpaert@UGent.be"; foaf:name "Pieter Colpaert" ;
+                             <http://www.w3.org/2003/01/geo/wgs84_pos#lat> "51.0553" ;
+                             <http://www.w3.org/2003/01/geo/wgs84_pos#long> "3.71"  ];
+            dct:creator [foaf:mbox "Laurens.DeVocht@UGent.be"; foaf:name "Laurens De Vocht" ;
+                             <http://www.w3.org/2003/01/geo/wgs84_pos#lat> "51.0464" ;
+                             <http://www.w3.org/2003/01/geo/wgs84_pos#long> "3.739"  ];
+            dct:creator [foaf:mbox "Steven.Verstockt@UGent.be"; foaf:name "Steven Verstockt" ;
+                             <http://www.w3.org/2003/01/geo/wgs84_pos#lat> "51.0594" ;
+                             <http://www.w3.org/2003/01/geo/wgs84_pos#long> "3.723"  ] .
 
-oh:OpeningHours rdf:type owl:Class ;
-	rdfs:subClassOf owl:Thing ;
-	rdfs:label "Opening Hours" ;
-	rdfs:comment "A class to identify opening hours" ;
-	rdfs:isDefinedBy <http://semweb.mmlab.be/ns/oh> .
+        oh:OpeningHours rdf:type owl:Class ;
+            rdfs:subClassOf owl:Thing ;
+            rdfs:label "Opening Hours" ;
+            rdfs:comment "A class to identify opening hours" ;
+            rdfs:isDefinedBy <http://semweb.mmlab.be/ns/oh> .
 
-oh:OpeningHoursType rdf:type owl:Class ;
-	rdfs:subClassOf owl:Thing ;
-	rdfs:label "Opening Hours Type" ;
-	rdfs:comment "A class to identify the type of opening hours" ;
-	rdfs:isDefinedBy <http://semweb.mmlab.be/ns/oh> .
-oh:Calendar rdf:type owl:Class ;
-	rdfs:subClassOf owl:Thing ;
-	rdfs:label "A calendar" ;
-	rdfs:comment "A calendar which can be used for opening hours" ;
-	rdfs:isDefinedBy <http://semweb.mmlab.be/ns/oh> .
-oh:calendar rdf:type owl:ObjectProperty ;
-    rdfs:comment "A property to tell oh:OpeningHours to keep this calendar into account"@en ;
-    rdfs:range oh:Calendar ;
-    rdfs:domain rdf:List .
+        oh:OpeningHoursType rdf:type owl:Class ;
+            rdfs:subClassOf owl:Thing ;
+            rdfs:label "Opening Hours Type" ;
+            rdfs:comment "A class to identify the type of opening hours" ;
+            rdfs:isDefinedBy <http://semweb.mmlab.be/ns/oh> .
+        oh:Calendar rdf:type owl:Class ;
+            rdfs:subClassOf owl:Thing ;
+            rdfs:label "A calendar" ;
+            rdfs:comment "A calendar which can be used for opening hours" ;
+            rdfs:isDefinedBy <http://semweb.mmlab.be/ns/oh> .
+        oh:calendar rdf:type owl:ObjectProperty ;
+            rdfs:comment "A property to tell oh:OpeningHours to keep this calendar into account"@en ;
+            rdfs:range oh:Calendar ;
+            rdfs:domain rdf:List .
 
-oh:type rdf:type owl:ObjectProperty ;
-    rdfs:comment "Give a type to an oh:OpeningHours instance"@en ;
-    rdfs:range oh:Calendar ;
-    rdfs:domain oh:OpeningHoursType .
-oh:rdfcal rdf:type owl:ObjectProperty ;
-          rdfs:comment "A url towards a RDF calendar. The url gets an RDF Calendar component. It is advised to use the same URI as the instance of oh:Calendar, but this is not implied." ;
-          rdfs:range rdfs:Resource ;
-          rdfs:domain oh:Calendar .
+        oh:type rdf:type owl:ObjectProperty ;
+            rdfs:comment "Give a type to an oh:OpeningHours instance"@en ;
+            rdfs:range oh:Calendar ;
+            rdfs:domain oh:OpeningHoursType .
+        oh:rdfcal rdf:type owl:ObjectProperty ;
+                  rdfs:comment "A url towards a RDF calendar. The url gets an RDF Calendar component. It is advised to use the same URI as the instance of oh:Calendar, but this is not implied." ;
+                  rdfs:range rdfs:Resource ;
+                  rdfs:domain oh:Calendar .
 
-oh:closinghours rdf:type owl:DatatypeProperty ;
-                rdfs:comment "Tell whether or not this oh:Calendar specifies closing hours." ;
-                rdfs:range xsd:boolean ;
-                rdfs:domain oh:Calendar .
+        oh:closinghours rdf:type owl:DatatypeProperty ;
+                        rdfs:comment "Tell whether or not this oh:Calendar specifies closing hours." ;
+                        rdfs:range xsd:boolean ;
+                        rdfs:domain oh:Calendar .
 
-oh:icalurl rdf:type owl:ObjectProperty ;
-           rdfs:comment "An url towards an ICal calendar in the ICal serialization." ;
-           rdfs:range rdfs:Resource ;
-           rdfs:domain oh:Calendar .
-  </script>
+        oh:icalurl rdf:type owl:ObjectProperty ;
+                   rdfs:comment "An url towards an ICal calendar in the ICal serialization." ;
+                   rdfs:range rdfs:Resource ;
+                   rdfs:domain oh:Calendar .
+    </script>
 
-  <!--and run the rdf2html code-->
-  <script type="text/javascript">
-    rdf2html(document.getElementById("turtle").innerHTML);
-  </script>
+    <!-- Run RDF2HTML -->
+    <script type="text/javascript">
+        var triples = document.getElementById("turtle").innerHTML;
+        var config = {
+            // Plugins to be called, add your own plugin to the plugin definition in rdf2hml.js and compile
+            plugins: ['triples', 'map', 'ontology'],
+            // Output information to the console, errors are always logged to the console
+            verbose: true
+        };
+        rdf2html(triples, config);
+    </script>
 </body>
 </html>

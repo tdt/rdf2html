@@ -1,39 +1,41 @@
 /**
- * This file adds all ontology data it can find in the N3 db to the ontology id html tag using bootstrap classes
- * @author: Pieter Colpaert
- */
+* Ontology plugin
+*
+* Adds all ontology data it can find in the N3 db
+* @author: Pieter Colpaert
+* @author: Michiel Vancoillie
+*/
 
-var $ = require("jquery");
-
-var addClasses = function (db){
-
-  //todo: only append if there are triples to show
-  $("#ontology").append("<h3>Classes</h3><div id=\"classes\"></div>");
-
-  var triples = db.find(null,"http://www.w3.org/2000/01/rdf-schema#subClassOf",null);
-  triples.forEach(function(data) {
-
-    $("#classes").append("<h4>" + data["subject"] + "</h4>");
-    $("#classes").append("<p><label>SubClassOf: </label>" + data["object"] + "</p>");
-  });
-};
-
-var addProperties = function (db){
-  //todo: only append if there are triples to show
-  $("#ontology").append("<h3>Properties</h3>");
-};
-
-var addMisc = function (db) {
-  //todo: only append if there are triples to show
-  $("#ontology").append("<h3>Misc</h3>");
-};
+var $ = require('jquery');
 
 // Main closure
-module.exports =  function(db) {
-  if($("#ontology")){
-    
-    addClasses(db);
-    addProperties(db);
-    addMisc(db);
-  }
+module.exports =  function(db, container) {
+    addClasses(db, container);
+    addProperties(db, container);
+    addMisc(db, container);
+};
+
+var addClasses = function (db, container) {
+
+    var triples = db.find(null, "http://www.w3.org/2000/01/rdf-schema#subClassOf", null);
+
+    if (triples) {
+        container.append('<h4>Classes</h4><div id="rdf2html-classes"></div>');
+
+        triples.forEach(function (data) {
+            $("#rdf2html-classes").append("<h5>" + data["subject"] + "</h5>");
+            $("#rdf2html-classes").append("<p><label>SubClassOf:</label> " + data["object"] + "</p>");
+        });
+    }
+
+};
+
+var addProperties = function (db, container) {
+    // TODO: only append if there are triples to show
+    container.append("<h4>Properties</h4>");
+};
+
+var addMisc = function (db, container) {
+    // TODO: only append if there are triples to show
+    container.append("<h4>Misc</h4>");
 };

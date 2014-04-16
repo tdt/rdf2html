@@ -5,7 +5,7 @@ a javascript library to visualize an array of RDF triples into an HTML page
 
 Current stage: `planning - not functional`
 
-## Usage 
+## Usage
 
 ### HTML skeleton ###
 
@@ -41,11 +41,19 @@ Some guidelines:
 
 You're creating a particular visualization: e.g., you want to display an ontology, you want to display something on a map, you want to show some meta-data, etc. If there is already a visualization for what you want to do, e.g., a map or an ontology visualizer, integrate it in the specific code. If you want to do something completely new, then go ahead and add your own javascript class.
 
+## Requirements
+
+ * [Node.js](http://nodejs.org/)
+ * [n3](https://www.npmjs.org/package/n3)
+ * [jquery](https://www.npmjs.org/package/jquery)
+ * [uglifyjs](https://www.npmjs.org/package/uglifyjs): to install run `sudo npm install -g uglify-js`
+ * [Browserify](http://browserify.org/): to install run `sudo npm install -g browserify`
+
+ Or us
+
 ## Contribute
 
-Clone this repository, run `npm install`, run `mkdir build; rdf2html.js -o build/rdf2html.js`, use the build javascript.
-
-To install browserify: `sudo npm install -g browserify`
+Clone this repository, run `browserify rdf2html.js | uglifyjs > build/rdf2html.js`, use the build javascript file.
 
 ## Support
 
