@@ -18,7 +18,7 @@ We use a HTML data attribute `data-rdftohtml-plugin` to determine where to injec
 Somewhere in the HTML code, you should include the triples in turtle format:
 
 ```html
-<script id="turtle" type="text/rdf+turtle">
+<script id="turtle" type="text/turtle">
     @base <http://semweb.mmlab.be/ns/oh#> .
     @prefix owl: <http://www.w3.org/2002/07/owl#> .
     <http://semweb.mmlab.be/ns/oh> a owl:Ontology;
