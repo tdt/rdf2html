@@ -38,6 +38,7 @@ module.exports = function (db, container) {
 var addPoints = function (db, group) {
 
     var triples = db.find(null, 'http://www.w3.org/2003/01/geo/wgs84_pos#long', null);
+
     triples.forEach(function (data) {
         var lat = db.find(data.subject, 'http://www.w3.org/2003/01/geo/wgs84_pos#lat', null)[0];
         L.marker([getLiteralValue(lat.object), getLiteralValue(data.object)]).addTo(group)

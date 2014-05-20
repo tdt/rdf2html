@@ -4,17 +4,17 @@ body {
 
 .rdf2html-triple .subject {
     width : 33% ;
-    float : left;
+/*    float : left;*/
 }
 
 .rdf2html-triple .predicate {
     width : 33% ;
-    float : left;
+/*    float : left;*/
 }
 
 .rdf2html-triple .object {
     width : 33% ;
-    float : right;
+/*    float : right; */
 }
 
 .leaflet-container {
