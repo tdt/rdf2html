@@ -5,10 +5,10 @@
     <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
 
     <!-- Latest compiled and minified bootstrap CSS -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
     <!-- Optional bootstrap theme -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/slate/bootstrap.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootswatch/3.1.1/slate/bootstrap.min.css">
 
     <link rel="stylesheet" href="example.css" type="text/css" media="screen" />
     <script src="../build/rdf2html.js"></script>
@@ -51,75 +51,57 @@
             </div>
         </div>
 
+        <div data-rdftohtml-plugin='paging'>
+        </div>
+
     </div>
 
     <!-- You can now set the turtle over here: -->
     <script id="turtle" type="text/turtle">
-        @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-        @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-        @prefix owl: <http://www.w3.org/2002/07/owl#> .
-        @prefix foaf: <http://xmlns.com/foaf/0.1/> .
-        @prefix oh: <http://semweb.mmlab.be/ns/oh#> .
-        @prefix dct: <http://purl.org/dc/terms/> .
-        @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ns1: <http://purl.org/oslo/ns/localgov#> .
+@prefix ns0: <http://www.w3.org/ns/regorg#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix ns2: <http://www.w3.org/ns/adms#> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix hydra: <http://www.w3.org/ns/hydra/core#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
+<http://ewi.mmlab.be/cd/id/organisatie/DESUNIORG02>
+  a ns1:Organization ;
+  ns0:legalName "OCMW Destelbergen" ;
+  dc:alternative "OCMW Destelbergen", "OCMW" ;
+  ns1:contact <http://ewi.mmlab.be/cd/id/contact/DESUNICON026> ;
+  ns1:hasChannel <http://ewi.mmlab.be/cd/id/kanaal/DESUNIKAN24>, <http://ewi.mmlab.be/cd/id/kanaal/DESUNIKAN25>, <http://ewi.mmlab.be/cd/id/kanaal/DESUNIKAN22>, <http://ewi.mmlab.be/cd/id/kanaal/DESUNIKAN23>, <http://ewi.mmlab.be/cd/id/kanaal/DESUNIKAN21> ;
+  ns1:hasRoleInActivity <http://ewi.mmlab.be/cd/id/bezigheid/DESUNIBEZ021> ;
+  ns1:mailingLocation <http://ewi.mmlab.be/cd/id/locatie/DESUNILOC003> ;
+  ns2:identifier <http://ewi.mmlab.be/cd/id/identificatie/DESUNIORG02> .
 
-        # ---------------------------------------- Metadata----------------------------------------------
+<http://ewi.mmlab.be/cd/all#dataset>
+  a void:Dataset, hydra:Collection ;
+  hydra:search [
+    a hydra:IriTemplate ;
+    hydra:template "http://ewi.mmlab.be/cd/all{?subject,predicate,object}" ;
+    hydra:mapping [
+      a hydra:IriTemplateMapping ;
+      hydra:variable "subject" ;
+      hydra:property rdf:subject
+    ], [
+      a hydra:IriTemplateMapping ;
+      hydra:variable "predicate" ;
+      hydra:property rdf:predicate
+    ], [
+      a hydra:IriTemplateMapping ;
+      hydra:variable "object" ;
+      hydra:property rdf:object
+    ]
+  ] ;
+  void:subset <http://ewi.mmlab.be/cd/all?subject=http%3A%2F%2Fewi.mmlab.be%2Fcd%2Fid%2Forganisatie%2FDESUNIORG02> .
 
-        <http://semweb.mmlab.be/ns/oh> a owl:Ontology;
-            rdfs:comment "A vocabulary to describe opening hours using ICal/RDFCal calendars";
-            dct:title "The Opening Hours vocabulary"@en;
-            dct:issued "2013-12-05"^^xsd:date;
-                dct:modified "2013-12-26"^^xsd:date;
-            dct:creator [foaf:mbox "Pieter.Colpaert@UGent.be"; foaf:name "Pieter Colpaert" ;
-                             <http://www.w3.org/2003/01/geo/wgs84_pos#lat> "51.0553" ;
-                             <http://www.w3.org/2003/01/geo/wgs84_pos#long> "3.71"  ];
-            dct:creator [foaf:mbox "Laurens.DeVocht@UGent.be"; foaf:name "Laurens De Vocht" ;
-                             <http://www.w3.org/2003/01/geo/wgs84_pos#lat> "51.0464" ;
-                             <http://www.w3.org/2003/01/geo/wgs84_pos#long> "3.739"  ];
-            dct:creator [foaf:mbox "Steven.Verstockt@UGent.be"; foaf:name "Steven Verstockt" ;
-                             <http://www.w3.org/2003/01/geo/wgs84_pos#lat> "51.0594" ;
-                             <http://www.w3.org/2003/01/geo/wgs84_pos#long> "3.723"  ] .
-
-        oh:OpeningHours rdf:type owl:Class ;
-            rdfs:subClassOf owl:Thing ;
-            rdfs:label "Opening Hours" ;
-            rdfs:comment "A class to identify opening hours" ;
-            rdfs:isDefinedBy <http://semweb.mmlab.be/ns/oh> .
-
-        oh:OpeningHoursType rdf:type owl:Class ;
-            rdfs:subClassOf owl:Thing ;
-            rdfs:label "Opening Hours Type" ;
-            rdfs:comment "A class to identify the type of opening hours" ;
-            rdfs:isDefinedBy <http://semweb.mmlab.be/ns/oh> .
-        oh:Calendar rdf:type owl:Class ;
-            rdfs:subClassOf owl:Thing ;
-            rdfs:label "A calendar" ;
-            rdfs:comment "A calendar which can be used for opening hours" ;
-            rdfs:isDefinedBy <http://semweb.mmlab.be/ns/oh> .
-        oh:calendar rdf:type owl:ObjectProperty ;
-            rdfs:comment "A property to tell oh:OpeningHours to keep this calendar into account"@en ;
-            rdfs:range oh:Calendar ;
-            rdfs:domain rdf:List .
-
-        oh:type rdf:type owl:ObjectProperty ;
-            rdfs:comment "Give a type to an oh:OpeningHours instance"@en ;
-            rdfs:range oh:Calendar ;
-            rdfs:domain oh:OpeningHoursType .
-        oh:rdfcal rdf:type owl:ObjectProperty ;
-                  rdfs:comment "A url towards a RDF calendar. The url gets an RDF Calendar component. It is advised to use the same URI as the instance of oh:Calendar, but this is not implied." ;
-                  rdfs:range rdfs:Resource ;
-                  rdfs:domain oh:Calendar .
-
-        oh:closinghours rdf:type owl:DatatypeProperty ;
-                        rdfs:comment "Tell whether or not this oh:Calendar specifies closing hours." ;
-                        rdfs:range xsd:boolean ;
-                        rdfs:domain oh:Calendar .
-
-        oh:icalurl rdf:type owl:ObjectProperty ;
-                   rdfs:comment "An url towards an ICal calendar in the ICal serialization." ;
-                   rdfs:range rdfs:Resource ;
-                   rdfs:domain oh:Calendar .
+<http://ewi.mmlab.be/cd/all?subject=http%3A%2F%2Fewi.mmlab.be%2Fcd%2Fid%2Forganisatie%2FDESUNIORG02>
+  hydra:totalItems 13 ;
+  void:triples 13 ;
+  hydra:itemsPerPage 100 ;
+  hydra:firstPage <http://ewi.mmlab.be/cd/all?subject=http%3A%2F%2Fewi.mmlab.be%2Fcd%2Fid%2Forganisatie%2FDESUNIORG02&limit=100&offset=0> .
     </script>
 
     <!-- Run RDF2HTML -->
@@ -127,7 +109,7 @@
         var triples = document.getElementById("turtle").innerHTML;
         var config = {
             // Plugins to be called, add your own plugin to the plugin definition in rdf2hml.js and compile
-            plugins: ['triples', 'map', 'ontology'],
+            plugins: ['triples', 'map', 'ontology', 'paging'],
             // Output information to the console, errors are always logged to the console
             verbose: true
         };

@@ -17,13 +17,14 @@ var $ = require('jquery');
 var plugins = {
     'triples': require('./plugins/triples/triples.js'),
     'ontology': require('./plugins/ontology/ontology.js'),
-    'map': require('./plugins/map/map.js')
+    'map': require('./plugins/map/map.js'),
+    'paging' : require('./plugins/paging/paging.js')
 }
 
 // Defaults for configuration
 var defaults = {
     // Default called plugins
-    plugins: ['triples', 'ontology', 'map'],
+    plugins: ['triples', 'ontology', 'map','paging'],
     // Log information to the console
     verbose: false
 }
