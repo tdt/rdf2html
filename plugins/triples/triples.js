@@ -79,7 +79,7 @@ module.exports =  function (db, container, prefixes) {
     // Display resources
     resources.forEach(function (resource) {
         // TODO: first, get all the entities, then visualize entities separately
-        var subjectContainer = $('<div class="rdf2html-triple"><h3 class="subject">' + linkify(resource, prefixes) + '</h3></div>')
+        var subjectContainer = $('<div class="rdf2html-triple"><h4 class="subject">' + linkify(resource, prefixes) + '</h4></div>')
 
         // Add triples table
         var table = $('<table class="triples table table-hover"></table>');
