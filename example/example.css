@@ -2,21 +2,6 @@ body {
     padding: 20px 0px;
 }
 
-.rdf2html-triple .subject {
-    width : 33% ;
-/*    float : left;*/
-}
-
-.rdf2html-triple .predicate {
-    width : 33% ;
-/*    float : left;*/
-}
-
-.rdf2html-triple .object {
-    width : 33% ;
-/*    float : right; */
-}
-
 .leaflet-container {
     height: 300px;
 }

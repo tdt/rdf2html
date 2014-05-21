@@ -55,6 +55,7 @@ Currently, we support these ontologies:
  * owl/rdfs
 
 We want you to contribute, or we are planning to contribute these in the future:
+
  * apps4eu
  * foaf
  * dcterms

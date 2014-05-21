@@ -12,6 +12,8 @@ var N3 = require('n3');
 require('n3').Util(global);
 var $ = require('jquery');
 
+// Load utilities
+require('./utilities.js');
 
 // Definition of existing plugins
 var plugins = {
@@ -75,11 +77,17 @@ rdf2html = function (triples, config) {
                     container = $('<div></div>');
                     if (config.verbose) console.warn("Couldn't find container for plugin:", identifier);
                 }
-                console.log(container.attr('id'));
+
                 // Call plugin
-              plugins[identifier](db, container, prefixes);
+                plugins[identifier](db, container, prefixes);
                 if (config.verbose) console.info('Called plugin:', identifier);
+
+                // Check if container has information, otherwise add hide class
+                if (container.is(':empty')) {
+                    container.addClass('hidden');
+                }
             };
         }
     });
 };
+

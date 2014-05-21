@@ -9,27 +9,33 @@
 // Main closure
 module.exports = function (db, container, prefixes) {
 
-    // Create map object with defaults
-    var map = L.map(container[0], {
-        center: [51, 3.70],
-        zoom: 13
-    });
-
-    // Add a tile layer
-    var mapURL = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-    var attribution = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> ';
-    L.tileLayer(mapURL, {attribution: attribution}).addTo(map);
-
     // Create group for all elements
     var group = new L.featureGroup();
-    group.addTo(map);
 
     // Call object functions
     addPoints(db, group);
 
-    // Fit map bounds
-    map.fitBounds(group.getBounds(), {padding: [50, 50]});
+    // Check if there are objects to be rendered on the map
+    var geoGroup = group.toGeoJSON();
+    if(typeof geoGroup.features !== 'undefined' && geoGroup.features.length > 0){
 
+        // Create map object with defaults
+        var map = L.map(container[0], {
+            center: [51, 3.70],
+            zoom: 13
+        });
+
+        // Add a tile layer
+        var mapURL = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+        var attribution = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> ';
+        L.tileLayer(mapURL, {attribution: attribution}).addTo(map);
+
+        // Add group to map
+        group.addTo(map);
+
+        // Fit map bounds
+        map.fitBounds(group.getBounds(), {padding: [50, 50]});
+    }
 };
 
 // TODO: Support more shapes.

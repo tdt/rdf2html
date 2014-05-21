@@ -23,8 +23,8 @@ var addClasses = function (db, container) {
         container.append('<h4>Classes</h4><div id="rdf2html-classes"></div>');
 
         triples.forEach(function (data) {
-            $("#rdf2html-classes").append("<h5>" + data["subject"] + "</h5>");
-            $("#rdf2html-classes").append("<p><label>SubClassOf:</label> " + data["object"] + "</p>");
+            $("#rdf2html-classes").append("<h5>" + linkify(data["subject"]) + "</h5>");
+            $("#rdf2html-classes").append("<p><label>SubClassOf:</label> " + linkify(data["object"]) + "</p>");
         });
     }
 
