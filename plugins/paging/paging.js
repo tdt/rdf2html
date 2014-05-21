@@ -23,20 +23,27 @@ var addPaging = function (db, container) {
     var nextPage = db.find(currentURI, "http://www.w3.org/ns/hydra/core#nextPage", null);
     var lastPage = db.find(currentURI, "http://www.w3.org/ns/hydra/core#lastPage", null);
 
-    if (firstPage) {
-        container.append('<li id="firstPage"><a href="' + firstPage + '">first page</a></li>');
+    var pagination = $('<ul class="pagination"></ul>');
+
+
+    if (firstPage.length > 0) {
+        pagination.append('<li><a href="' + firstPage + '">&laquo;</a></li>');
     }
 
-    if (previousPage) {
-        container.append('<li id="firstPage"><a href="' + previousPage + '">previous page</a></li>');
+    if (previousPage.length > 0) {
+        pagination.append('<li><a href="' + previousPage + '">Previous</a></li>');
     }
 
-    if (nextPage) {
-        container.append('<li id="nextPage"><a href="' + nextPage + '">next page</a></li>');
+    if (nextPage.length > 0) {
+        pagination.append('<li><a href="' + nextPage + '">Next</a></li>');
     }
 
-    if (lastPage) {
-        container.append('<li id="lastPage"><a href="' + lastPage + '">last page</a></li>');
+    if (lastPage.length > 0) {
+        pagination.append('<li><a href="' + lastPage + '">&raquo;</a></li>');
     }
 
+    // Check if pagination isn't empty
+    if (!pagination.is(':empty')) {
+        container.append(pagination);
+    }
 };

@@ -19,7 +19,7 @@ var addClasses = function (db, container) {
 
     var triples = db.find(null, "http://www.w3.org/2000/01/rdf-schema#subClassOf", null);
 
-    if (triples) {
+    if (triples.length > 0) {
         container.append('<h4>Classes</h4><div id="rdf2html-classes"></div>');
 
         triples.forEach(function (data) {
@@ -31,11 +31,9 @@ var addClasses = function (db, container) {
 };
 
 var addProperties = function (db, container) {
-    // TODO: only append if there are triples to show
-    container.append("<h4>Properties</h4>");
+    // TODO
 };
 
 var addMisc = function (db, container) {
-    // TODO: only append if there are triples to show
-    container.append("<h4>Misc</h4>");
+    // TODO
 };
