@@ -48,7 +48,6 @@ rdf2html = function (triples, config) {
     // Setup turtle parser
     var parser = N3.Parser();
     var db = N3.Store();
-    var prefixes = [];
     parser.parse(triples, function (error, triple, prefixes) {
 
         // Always log errors
@@ -77,9 +76,8 @@ rdf2html = function (triples, config) {
                     if (config.verbose) console.warn("Couldn't find container for plugin:", identifier);
                 }
                 console.log(container.attr('id'));
-
                 // Call plugin
-                plugins[identifier](db, container);
+              plugins[identifier](db, container, prefixes);
                 if (config.verbose) console.info('Called plugin:', identifier);
             };
         }

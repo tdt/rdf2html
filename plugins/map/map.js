@@ -7,7 +7,7 @@
 */
 
 // Main closure
-module.exports = function (db, container) {
+module.exports = function (db, container, prefixes) {
 
     // Create map object with defaults
     var map = L.map(container[0], {

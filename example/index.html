@@ -77,7 +77,7 @@
   ns2:identifier <http://ewi.mmlab.be/cd/id/identificatie/DESUNIORG02> .
 
 <http://ewi.mmlab.be/cd/all#dataset>
-  a void:Dataset, hydra:Collection ;
+  a void:Dataset, _:b0 ,  hydra:Collection ;
   hydra:search [
     a hydra:IriTemplate ;
     hydra:template "http://ewi.mmlab.be/cd/all{?subject,predicate,object}" ;
@@ -97,6 +97,8 @@
   ] ;
   void:subset <http://ewi.mmlab.be/cd/all?subject=http%3A%2F%2Fewi.mmlab.be%2Fcd%2Fid%2Forganisatie%2FDESUNIORG02> .
 
+_:b0 a _:b1 .
+_:b1 a _:b0 .
 <http://ewi.mmlab.be/cd/all?subject=http%3A%2F%2Fewi.mmlab.be%2Fcd%2Fid%2Forganisatie%2FDESUNIORG02>
   hydra:totalItems 13 ;
   void:triples 13 ;

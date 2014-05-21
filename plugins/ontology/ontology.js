@@ -9,7 +9,7 @@
 var $ = require('jquery');
 
 // Main closure
-module.exports =  function(db, container) {
+module.exports =  function(db, container, prefixes) {
     addClasses(db, container);
     addProperties(db, container);
     addMisc(db, container);
