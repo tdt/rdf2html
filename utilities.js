@@ -6,18 +6,21 @@
 global.linkify = function(text, prefixes) {
     if (text) {
         text = link_replace(text,
-            function (url) {
-                var full_url = url;
+            {
+                callback:
+                    function (url) {
+                        var full_url = url;
 
-                if (!full_url.match('^https?:\/\/')) {
-                    full_url = 'http://' + full_url;
-                }
+                        if (!full_url.match('^https?:\/\/')) {
+                            full_url = 'http://' + full_url;
+                        }
 
-                for ( var prefix in prefixes) {
-                    url = url.replace(prefixes[prefix], prefix + ":");
-                }
+                        for ( var prefix in prefixes) {
+                            url = url.replace(prefixes[prefix], prefix + ":");
+                        }
 
-                return '<a href="' + full_url + '">' + url + '</a>';
+                        return '<a href="' + full_url + '">' + url + '</a>';
+                    }
             }
             );
     }
