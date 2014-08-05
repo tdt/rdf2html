@@ -3,7 +3,7 @@ rdf2html
 
 a javascript library to visualize an array of RDF triples into an HTML page
 
-Current stage: `planning - not functional`
+Current stage: `planning - alpha version`
 
 ## Usage
 
