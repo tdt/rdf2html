@@ -45,6 +45,11 @@ rdf2html = function (triples, config) {
             config[item] = defaults[item];
         }
     }
+
+    if(config["custom"]) {
+        plugins["custom"] = config["custom"];
+    }
+
     if (config.verbose) console.log('Configuration used', config);
 
     // Setup turtle parser
