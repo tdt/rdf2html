@@ -2,6 +2,39 @@
  * Global utility functions
  */
 
+global.owlPrefix = "http://www.w3.org/2002/07/owl#";
+global.rdfsPrefix = "http://www.w3.org/2000/01/rdf-schema#";
+
+//this information should be acquired from the n3
+global.knownPrefixes = [owlPrefix, rdfsPrefix, "http://www.w3.org/2001/XMLSchema#", "http://www.w3.org/1999/02/22-rdf-syntax-ns#", "http://www.workingontologist.org/Examples/Chapter3/Product.owl#"];
+
+//Remove prefix from URI
+//@prefixes is an array
+global.removePrefix = function (uri, prefixes) {
+    var index = 0; 
+    
+    while(index < prefixes.length && uri.indexOf(prefixes[index]) != 0) {
+          index ++;
+    }
+          
+    if (index < prefixes.length) {
+        return uri.replace(prefixes[index], "");
+    } else {
+        return uri;
+    }
+}
+
+//search if an element has a label, if this is not the case the name without the prefix is returned.
+global.searchForLabel = function (data, db) {
+        var results = db.find(data, "http://www.w3.org/2000/01/rdf-schema#label", null);
+
+        if (results.length > 0) {
+            return getLiteralValue(results[0]["object"]);
+        }
+
+        return removePrefix(data, knownPrefixes);
+}
+
 // Function to turn links in to link
 global.linkify = function(text, prefixes) {
     if (text) {
