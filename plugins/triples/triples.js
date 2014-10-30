@@ -33,8 +33,6 @@ module.exports =  function (db, container, prefixes) {
 		return !containsTriple(item, allClasses) && !containsTriple(item, allProperties) && !containsTriple(item, allOntologies);
 	});
     
-    alert(allTriples.length + ", " + triples.length);
-
     // Add 2 column table row
     var createTableRow = function (col1, col2) {
         var row = $('<tr></tr>');
