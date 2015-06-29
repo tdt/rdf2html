@@ -9,9 +9,30 @@ var $ = require('jquery');
 
 module.exports =  function (db, container, prefixes) {
 
-    // Get all triples
-    var triples = db.find(null, null, null);
+	function compareTriples(triple1, triple2) {
+		return triple1.subject === triple2.subject;
+	}
+	
+	function containsTriple(triple, store) {
+		index = 0;
+		
+		while (index < store.length && !compareTriples(triple, store[index])) {
+			index ++;
+		}
+		
+		return index < store.length;
+	}
 
+    // Get all triples
+    var allTriples = db.find(null, null, null);
+	var allClasses = db.find(null, null, "http://www.w3.org/2002/07/owl#Class");
+    var allOntologies = db.find(null, null, "http://www.w3.org/2002/07/owl#Ontology");
+	var allProperties = db.find(null, null, "http://www.w3.org/2002/07/owl#DatatypeProperty");
+	
+	var triples =  allTriples.filter(function(item) {
+		return !containsTriple(item, allClasses) && !containsTriple(item, allProperties) && !containsTriple(item, allOntologies);
+	});
+    
     // Add 2 column table row
     var createTableRow = function (col1, col2) {
         var row = $('<tr></tr>');
@@ -66,7 +87,7 @@ module.exports =  function (db, container, prefixes) {
                 }
 
                 // Add row
-                rows.push(createTableRow(predicate, object));
+                rows.push(createTableRow("<a href='" + data.predicate + "'>" + searchForLabel(data.predicate, db) + "</a>", object));
             });
         }
 
