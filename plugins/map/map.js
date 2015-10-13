@@ -6,8 +6,13 @@
 * @author: Michiel Vancoillie
 */
 
+var L = require('leaflet');
+
 // Main closure
-module.exports = function (db, container, prefixes) {
+module.exports = function (db, container, prefixes, config) {
+	
+	// Tell leaflet the location at which it can find its images
+    L.Icon.Default.imagePath = config.assetsBase + '/images';
 
     // Create group for all elements
     var group = new L.featureGroup();

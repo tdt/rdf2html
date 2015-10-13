@@ -28,7 +28,9 @@ var defaults = {
     // Default called plugins
     plugins: ['triples', 'ontology', 'map','paging'],
     // Log information to the console
-    verbose: false
+    verbose: false,
+    // Base path on which the assets are provided
+    assetsBase: '/dist'
 }
 
 /**
@@ -84,7 +86,7 @@ rdf2html = function (triples, config) {
                 }
 
                 // Call plugin
-                plugins[identifier](db, container, prefixes);
+                plugins[identifier](db, container, prefixes, config);
                 if (config.verbose) console.info('Called plugin:', identifier);
 
                 // Check if container has information, otherwise add hide class

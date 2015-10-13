@@ -38,14 +38,12 @@ You're creating a particular visualization: e.g., you want to display an ontolog
  * [Node.js](http://nodejs.org/)
  * [n3](https://www.npmjs.org/package/n3)
  * [jquery](https://www.npmjs.org/package/jquery)
- * [uglifyjs](https://www.npmjs.org/package/uglifyjs): to install run `sudo npm install -g uglify-js`
- * [Browserify](http://browserify.org/): to install run `sudo npm install -g browserify`
 
  Or us
 
 ## Contribute
 
-Clone this repository, run `browserify rdf2html.js | uglifyjs > build/rdf2html.js`, use the build javascript file.
+Clone this repository, run `node_modules/gulp/bin/gulp.js dist`, use the resulting `dist/` folder.
 
 ## Support
 
