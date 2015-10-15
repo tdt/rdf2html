@@ -31,7 +31,11 @@ var defaults = {
             assetsBase: '/dist'
         },
         paging: {
-            path: require('./plugins/paging/paging.js')
+            path: require('./plugins/paging/paging.js'),
+            firstPage :   '&laquo;',
+            previousPage: 'Previous',
+            nextPage:     'Next',
+            lastPage:     '&raquo;'
         }
     }
 };
@@ -53,7 +57,7 @@ loadDefaults = function (defaults, config) {
  */
 rdf2html = function (triples, config) {
 
-    // Transform plugin array to map if the simplified config is used
+    // Transform plugin array to map if the simplified config is use
     config.plugins = Array.isArray(config.plugins) ? config.plugins.reduce(function (plugins, plugin) { plugins[plugin] = true; return plugins; }, {}) : config.plugins;
     // Load default configuration
     config = loadDefaults(defaults, config);
