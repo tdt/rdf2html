@@ -22,9 +22,9 @@
   "readmeFilename": "README.md",
   "gitHead": "c6e4aea336e3f2a83a3f7acc06648a598aaf190e",
   "dependencies": {
-    "n3": "~0.2.6",
     "jquery": "~2.1.0",
-    "leaflet": "0.7.5"
+    "leaflet": "0.7.5",
+    "n3": "^0.4.5"
   },
   "devDependencies": {
     "browserify": "^11.2.0",

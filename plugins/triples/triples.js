@@ -80,7 +80,7 @@ module.exports =  function (db, container, prefixes) {
                 if (isBlank(data.object)){
                     // container.append('<p><span class="predicate">'+ prefix +  linkify(data.predicate, prefixes) +'</span><span class="object"></span></p>');
                     // resource2Html(data.object, triples, level+1);
-                } else if (isUri(data.object) ) {
+                } else if (isIRI(data.object) ) {
                     object = linkify(data.object, prefixes);
                 } else if (isLiteral(data.object)){
                     object = getLiteralValue(data.object);
