@@ -1,13 +1,10 @@
-var gulp = require('gulp');
-
-var browserify = require('browserify');
-var gulp = require('gulp');
-var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
-var gutil = require('gulp-util');
-var uglify = require('gulp-uglify');
-var sourcemaps = require('gulp-sourcemaps');
-var runSequence = require('run-sequence');
+var browserify  = require('browserify'),
+    gulp        = require('gulp'),
+    source      = require('vinyl-source-stream'),
+    buffer      = require('vinyl-buffer'),
+    gutil       = require('gulp-util'),
+    uglify      = require('gulp-uglify'),
+    runSequence = require('run-sequence');
 
 // Transform code for browser support
 gulp.task('browserify', function() {
