@@ -20,18 +20,18 @@ var defaults = {
     // Default called plugins
     plugins: {
         triples: {
-            path: require('./plugins/triples/triples.js')
+            callback: require('./plugins/triples/triples.js')
         },
         ontology: {
-            path: require('./plugins/ontology/ontology.js')
+            callback: require('./plugins/ontology/ontology.js')
         },
         map: {
-            path: require('./plugins/map/map.js'),
+            callback: require('./plugins/map/map.js'),
             // Base path on which the assets are provided
             assetsBase: '/dist'
         },
         paging: {
-            path: require('./plugins/paging/paging.js'),
+            callback: require('./plugins/paging/paging.js'),
             firstPage :   '&laquo;',
             previousPage: 'Previous',
             nextPage:     'Next',
@@ -102,7 +102,7 @@ rdf2html = function (triples, config) {
 
                 // Call plugin
                 var pluginConfig = config.plugins[plugin];
-                pluginConfig.path(db, container, prefixes, pluginConfig);
+                pluginConfig.callback(db, container, prefixes, pluginConfig);
                 if (config.verbose) console.info('Called plugin:', plugin);
 
                 // Check if container has information, otherwise add hide class
