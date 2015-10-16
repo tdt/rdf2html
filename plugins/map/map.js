@@ -6,8 +6,13 @@
 * @author: Michiel Vancoillie
 */
 
+var L = require('leaflet');
+
 // Main closure
-module.exports = function (db, container, prefixes) {
+module.exports = function (db, container, prefixes, config) {
+	
+	// Tell leaflet the location at which it can find its images
+    L.Icon.Default.imagePath = config.assetsBase + '/images';
 
     // Create group for all elements
     var group = new L.featureGroup();
@@ -47,8 +52,10 @@ var addPoints = function (db, group) {
 
     triples.forEach(function (data) {
         var lat = db.find(data.subject, 'http://www.w3.org/2003/01/geo/wgs84_pos#lat', null)[0];
-        L.marker([getLiteralValue(lat.object), getLiteralValue(data.object)]).addTo(group)
-        .bindPopup('<a href="' + data.subject + '" target="_blank" >' + data.subject +'</a>');
+		if(lat) {
+		    L.marker([getLiteralValue(lat.object), getLiteralValue(data.object)]).addTo(group)
+		    .bindPopup('<a href="' + data.subject + '" target="_blank" >' + data.subject +'</a>');
+		}
     });
 
 };

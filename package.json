@@ -1,27 +1,39 @@
 {
-    "name": "rdf2html",
-    "version": "0.0.0",
-    "description": "A javascript library to visualize an array of RDF triples into an HTML page",
-    "main": "rdf2html.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/tdt/rdf2html.git"
-    },
-    "keywords": [
+  "name": "rdf2html",
+  "version": "0.0.0",
+  "description": "A javascript library to visualize an array of RDF triples into an HTML page",
+  "main": "rdf2html.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "gulp dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tdt/rdf2html.git"
+  },
+  "keywords": [
     "rdf",
     "visualizer",
     "triples",
     "linked open data"
-    ],
-    "author": "Pieter Colpaert",
-    "license": "MIT",
-    "readmeFilename": "README.md",
-    "gitHead": "c6e4aea336e3f2a83a3f7acc06648a598aaf190e",
-    "dependencies": {
-        "n3": "~0.2.6",
-        "jquery": "~2.1.0"
-    }
+  ],
+  "author": "Pieter Colpaert",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "gitHead": "c6e4aea336e3f2a83a3f7acc06648a598aaf190e",
+  "dependencies": {
+    "jquery": "~2.1.0",
+    "leaflet": "0.7.5",
+    "n3": "^0.4.5"
+  },
+  "devDependencies": {
+    "browserify": "^11.2.0",
+    "gulp": "^3.9.0",
+    "gulp-uglify": "^1.4.2",
+    "gulp-util": "^3.0.6",
+    "run-sequence": "^1.1.4",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.4.0"
+  }
 }

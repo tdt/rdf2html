@@ -15,21 +15,40 @@ var $ = require('jquery');
 // Load utilities
 require('./utilities.js');
 
-// Definition of existing plugins
-var plugins = {
-    'triples': require('./plugins/triples/triples.js'),
-    'ontology': require('./plugins/ontology/ontology.js'),
-    'map': require('./plugins/map/map.js'),
-    'paging' : require('./plugins/paging/paging.js')
-}
-
 // Defaults for configuration
 var defaults = {
     // Default called plugins
-    plugins: ['triples', 'ontology', 'map','paging'],
-    // Log information to the console
-    verbose: false
-}
+    plugins: {
+        triples: {
+            callback: require('./plugins/triples/triples.js')
+        },
+        ontology: {
+            callback: require('./plugins/ontology/ontology.js')
+        },
+        map: {
+            callback: require('./plugins/map/map.js'),
+            // Base path on which the assets are provided
+            assetsBase: '/dist'
+        },
+        paging: {
+            callback: require('./plugins/paging/paging.js'),
+            firstPage :   '&laquo;',
+            previousPage: 'Previous',
+            nextPage:     'Next',
+            lastPage:     '&raquo;'
+        }
+    }
+};
+
+loadDefaults = function (defaults, config) {
+    for(var item in defaults) {
+        // Set defaults for undefined properties
+        if (!config[item]) {
+            config[item] = defaults[item];
+        }
+    }
+    return config;
+};
 
 /**
  * Main closure
@@ -38,16 +57,17 @@ var defaults = {
  */
 rdf2html = function (triples, config) {
 
-    // Check configuration
-    for(var item in defaults) {
-        // Set defaults for undefined properties
-        if (!config[item]) {
-            config[item] = defaults[item];
+    // Transform plugin array to map if the simplified config is use
+    config.plugins = Array.isArray(config.plugins) ? config.plugins.reduce(function (plugins, plugin) { plugins[plugin] = true; return plugins; }, {}) : config.plugins;
+    // Load default configuration
+    config = loadDefaults(defaults, config);
+    // Set default properties for enabled plugins
+    for(var plugin in config.plugins) {
+        if(config.plugins[plugin] === true) {
+            config.plugins[plugin] = defaults.plugins[plugin];
+        } else {
+            config.plugins[plugin] = loadDefaults(defaults.plugins[plugin], config.plugins[plugin]);
         }
-    }
-
-    if(config["custom"]) {
-        plugins["custom"] = config["custom"];
     }
 
     if (config.verbose) console.log('Configuration used', config);
@@ -73,19 +93,17 @@ rdf2html = function (triples, config) {
             // Pass triples to plugins
             for(var plugin in config.plugins) {
 
-                // Plugin identifier
-                var identifier = config.plugins[plugin];
-
                 // Check for map container
-                var container = $("[data-rdftohtml-plugin='" + identifier + "']");
+                var container = $("[data-rdftohtml-plugin='" + plugin + "']");
                 if (container.length == 0) {
                     container = $('<div></div>');
-                    if (config.verbose) console.warn("Couldn't find container for plugin:", identifier);
+                    if (config.verbose) console.warn("Couldn't find container for plugin:", plugin);
                 }
 
                 // Call plugin
-                plugins[identifier](db, container, prefixes);
-                if (config.verbose) console.info('Called plugin:', identifier);
+                var pluginConfig = config.plugins[plugin];
+                pluginConfig.callback(db, container, prefixes, pluginConfig);
+                if (config.verbose) console.info('Called plugin:', plugin);
 
                 // Check if container has information, otherwise add hide class
                 if (container.is(':empty')) {
