@@ -25,16 +25,16 @@
     "jquery": "~2.1.0",
     "leaflet": "0.7.5",
     "n3": "^0.4.5",
-    "wkx": "^0.2.0"
-  },
-  "devDependencies": {
+    "wkx": "^0.2.0",
     "browserify": "^11.2.0",
     "gulp": "^3.9.0",
     "gulp-uglify": "^1.4.2",
     "gulp-util": "^3.0.6",
     "run-sequence": "^1.1.4",
     "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "devDependencies": {
     "watchify": "^3.4.0"
   }
 }
