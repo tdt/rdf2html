@@ -8,7 +8,7 @@
 
 var L = require('leaflet');
 var wkx = require('wkx');
-var Util = require('N3').Util;
+var Util = require('n3').Util;
 
 // Main closure
 module.exports = function (db, container, prefixes, config) {
