@@ -8,6 +8,7 @@
 
 var L = require('leaflet');
 var wkx = require('wkx');
+var Util = require('N3').Util;
 
 // Main closure
 module.exports = function (db, container, prefixes, config) {
@@ -70,7 +71,7 @@ var addWkt = function (db, group) {
     triples.forEach(function (data) {
         var wktTriple = db.find(data.object, 'http://www.opengis.net/ont/geosparql#asWKT', null)[0];
         if(wktTriple) {
-            var shape = wkx.Geometry.parse(wktTriple.object);
+            var shape = wkx.Geometry.parse(Util.getLiteralValue(wktTriple.object));
             // TODO: Support more WKT types
             if(shape.exteriorRing) {
                 var points = shape.exteriorRing.map(function (point) {
